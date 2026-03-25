@@ -2,244 +2,159 @@
 <html lang="uz">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>Uklon Premium App</title>
+    <title>Uklon Super UI Kit</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <script
-      src="https://api-maps.yandex.ru/2.1/?lang=uz_UZ"
-      type="text/javascript"
-    ></script>
   </head>
   <body>
-    <div class="device-frame">
-      <section id="login-screen" class="screen active">
-        <div class="login-header">
-          <h1 class="hero-logo">UKLON</h1>
-        </div>
+    <div class="iphone-frame">
+      <div class="login-bg">
+        <div class="logo-area"><h1 class="hero-logo">UKLON</h1></div>
         <div class="login-sheet">
           <div class="handle"></div>
-          <h2>Xush kelibsiz</h2>
-          <p>Davom etish uchun ma'lumotlarni kiriting</p>
-
-          <div class="input-group">
-            <input
-              type="tel"
-              placeholder="+998 90 123 45 67"
-              class="app-input"
-            />
-            <input type="password" placeholder="Parol" class="app-input" />
-          </div>
-
-          <div class="auth-actions">
-            <button class="btn-primary" onclick="nextScreen('main-screen')">
-              KIRISH
-            </button>
-            <button class="btn-outline">RO'YXATDAN O'TISH</button>
-          </div>
+          <h2 class="centered-title">Xush kelibsiz</h2>
+          <div class="input-field">+998 90 123 45 67</div>
+          <div class="input-field">Parol</div>
+          <div class="btn-black">KIRISH</div>
+          <div class="btn-outline">RO'YXATDAN O'TISH</div>
         </div>
-      </section>
-
-      <section id="main-screen" class="screen">
-        <div id="side-menu" class="side-menu">
-          <div class="menu-content">
-            <div class="menu-profile">
-              <div class="avatar-ring">
-                <div class="user-avatar">DB</div>
-              </div>
-              <h3>Dostonbek</h3>
-              <p>Oltin mijoz • 4.98 ⭐</p>
-            </div>
-            <nav class="menu-list">
-              <div class="m-link"><span>🕒</span> Safarlar tarixi</div>
-              <div class="m-link"><span>💳</span> Hamyon va kartalar</div>
-              <div class="m-link"><span>🎁</span> Bonuslar</div>
-              <div class="m-link"><span>⚙️</span> Sozlamalar</div>
-              <div class="m-link"><span>🎧</span> Qo'llab-quvvatlash</div>
-              <hr class="menu-hr" />
-              <div class="m-link logout" onclick="nextScreen('login-screen')">
-                <span>🚪</span> Chiqish
-              </div>
-            </nav>
-          </div>
-        </div>
-        <div id="menu-overlay" onclick="toggleMenu()"></div>
-
-        <header class="main-header">
-          <div class="glass-chip" onclick="toggleMenu()">
-            <div class="burger-icon"><span></span><span></span></div>
-            <strong>Dostonbek</strong>
-          </div>
-          <div class="glass-chip traffic-box">
-            <span class="traffic-light">🚦</span>
-            <div class="mini-progress">
-              <div class="fill" style="width: 75%"></div>
-            </div>
-          </div>
-        </header>
-
-        <div id="map-main" class="map-container"></div>
-
-        <div class="action-sheet">
-          <div class="handle"></div>
-          <div class="address-box">
-            <div class="addr">
-              <span class="dot yellow"></span> Nurafshon ko'chasi, 70A
-            </div>
-            <div class="addr">
-              <span class="dot orange"></span> Qalandar ko'chasi, 24
-            </div>
-          </div>
-
-          <div class="tariff-wrapper">
-            <div class="tariff-scroll">
-              <div class="tariff-card active" onclick="selectT(this, 'Start')">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/744/744465.png"
-                />
-                <span>Start</span><b>22k</b>
-              </div>
-              <div class="tariff-card" onclick="selectT(this, 'Comfort')">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/3202/3202926.png"
-                />
-                <span>Comfort</span><b>30k</b>
-              </div>
-              <div class="tariff-card" onclick="selectT(this, 'Business')">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/2555/2555013.png"
-                />
-                <span>Business</span><b>45k</b>
-              </div>
-              <div class="tariff-card" onclick="selectT(this, 'Skuter')">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
-                />
-                <span>Skuter</span><b>8k</b>
-              </div>
-              <div class="tariff-card" onclick="selectT(this, 'Yetkazish')">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/1039/1039328.png"
-                />
-                <span>Yetkazish</span><b>12k</b>
-              </div>
-            </div>
-          </div>
-
-          <button class="btn-primary black-btn" onclick="confirmOrder()">
-            TASDIQLASH
-          </button>
-        </div>
-      </section>
-
-      <section id="status-screen" class="screen">
-        <div id="map-status" class="map-container"></div>
-        <div class="status-sheet">
-          <div class="handle dark-h"></div>
-          <div class="info-badge">
-            <span id="active-tariff">Start</span> • 5 daqiqada keladi
-          </div>
-
-          <div class="driver-info-card glass-card">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-              class="driver-img"
-            />
-            <div class="details">
-              <h4>Shahrillo</h4>
-              <p>Qora Chevrolet Malibu</p>
-              <mark class="plate-number">01 | A 777 BA</mark>
-            </div>
-            <div class="rating-box">⭐ 4.9</div>
-          </div>
-
-          <div class="footer-actions">
-            <button class="action-btn call-btn">📞 Qo'ng'iroq</button>
-            <button
-              class="action-btn cancel-btn"
-              onclick="nextScreen('main-screen')"
-            >
-              Bekor qilish
-            </button>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
 
-    <script>
-      let selectedTariffName = "Start";
+    <div class="iphone-frame">
+      <header class="app-header">
+        <div class="glass-chip profile-chip">👤 Dostonbek</div>
+        <div class="glass-chip">🚦 8/10</div>
+      </header>
+      <div class="map-view yandex-style">
+        <div class="car-wrapper main-pos">
+          <div class="car-body">🚕</div>
+          <div class="car-pulse"></div>
+        </div>
+      </div>
+      <div class="main-sheet">
+        <div class="handle"></div>
+        <div class="address-box">
+          <div class="addr-row">
+            📍 <input type="text" value="Nurafshon ko'chasi, 70A" />
+          </div>
+          <div class="addr-row no-b">
+            🏁 <input type="text" value="Qalandar ko'chasi, 24" />
+          </div>
+        </div>
+        <div class="tariff-scroll">
+          <div class="t-item active">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/744/744465.png"
+            /><span>Start</span><b>22k</b>
+          </div>
+          <div class="t-item">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3202/3202926.png"
+            /><span>Comfort</span><b>30k</b>
+          </div>
+          <div class="t-item">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2555/2555013.png"
+            /><span>Business</span><b>45k</b>
+          </div>
+        </div>
+        <div class="btn-black">TASDIQLASH</div>
+      </div>
+    </div>
 
-      function nextScreen(id) {
-        document
-          .querySelectorAll(".screen")
-          .forEach((s) => s.classList.remove("active"));
-        document.getElementById(id).classList.add("active");
+    <div class="iphone-frame">
+      <div class="menu-wrapper">
+        <div class="side-menu">
+          <div class="menu-head">
+            <div class="u-icon">👤</div>
+            <h3>Dostonbek</h3>
+            <p>Oltin mijoz • 4.98 ⭐</p>
+          </div>
+          <div class="menu-list">
+            <div class="m-link active">🕒 Safarlar tarixi</div>
+            <div class="m-link">💳 To'lov usullari</div>
+            <div class="m-link">🎁 Bonuslar</div>
+            <div class="m-link">⚙️ Sozlamalar</div>
+            <hr />
+            <div class="m-link red">🚪 Chiqish</div>
+          </div>
+        </div>
+        <div class="blur-sidebar"></div>
+      </div>
+    </div>
 
-        if (id === "main-screen") setTimeout(initMainMap, 300);
-        if (id === "status-screen") {
-          document.getElementById("active-tariff").innerText =
-            selectedTariffName;
-          setTimeout(initStatusMap, 300);
-        }
-      }
+    <div class="iphone-frame">
+      <div class="page-header">〈 Safarlar tarixi</div>
+      <div class="content-p">
+        <div class="hist-card">
+          <b>Kecha, 18:45</b>
+          <p>Nurafshon ➔ Qalandar</p>
+          <span>Comfort • 28,500 som</span>
+        </div>
+        <div class="hist-card">
+          <b>24-mart</b>
+          <p>Aeroport ➔ Chilonzor</p>
+          <span>Start • 22,000 som</span>
+        </div>
+      </div>
+    </div>
 
-      function toggleMenu() {
-        const menu = document.getElementById("side-menu");
-        const overlay = document.getElementById("menu-overlay");
-        const isOpen = menu.classList.toggle("open");
-        overlay.style.display = isOpen ? "block" : "none";
-      }
+    <div class="iphone-frame">
+      <div class="page-header">〈 To'lov usullari</div>
+      <div class="content-p">
+        <div class="pay-card active">💳 8600 **** 1234 <span>Humo</span></div>
+        <div class="pay-card">💵 Naqd pul <span>Asosiy</span></div>
+        <div class="btn-outline">+ Karta qo'shish</div>
+      </div>
+    </div>
 
-      function selectT(el, name) {
-        document
-          .querySelectorAll(".tariff-card")
-          .forEach((c) => c.classList.remove("active"));
-        el.classList.add("active");
-        selectedTariffName = name;
-      }
+    <div class="iphone-frame">
+      <div class="page-header">〈 Bonuslar</div>
+      <div class="content-p">
+        <div class="bonus-banner">
+          <h2>54,000 <span>ball</span></h2>
+          <p>Keyingi darajagacha 6,000 ball qoldi</p>
+        </div>
+        <div class="btn-black">SOVG'ALARNI KO'RISH</div>
+      </div>
+    </div>
 
-      function confirmOrder() {
-        nextScreen("status-screen");
-      }
+    <div class="iphone-frame">
+      <div class="page-header">〈 Sozlamalar</div>
+      <div class="content-p">
+        <div class="set-row">
+          Tungi rejim <span><div class="dumaloq"></div></span>
+        </div>
+        <div class="set-row">Til <span>O'zbekcha</span></div>
+        <div class="set-row">Xarita turi <span>Yandex</span></div>
+      </div>
+    </div>
 
-      function initMainMap() {
-        const container = document.getElementById("map-main");
-        container.innerHTML = "";
-        ymaps.ready(() => {
-          new ymaps.Map(container, {
-            center: [41.311, 69.24],
-            zoom: 14,
-            controls: [],
-          });
-        });
-      }
-
-      function initStatusMap() {
-        const container = document.getElementById("map-status");
-        container.innerHTML = "";
-        ymaps.ready(() => {
-          const map = new ymaps.Map(container, {
-            center: [41.311, 69.24],
-            zoom: 15,
-            controls: [],
-          });
-          const taxi = new ymaps.Placemark(
-            [41.315, 69.245],
-            {},
-            {
-              preset: "islands#blackTaxiIcon",
-              iconColor: "#000000",
-            },
-          );
-          map.geoObjects.add(taxi);
-        });
-      }
-    </script>
+    <div class="iphone-frame">
+      <div class="map-view yandex-style">
+        <div class="car-wrapper status-pos"><div class="car-body">🚕</div></div>
+      </div>
+      <div class="status-sheet">
+        <div class="handle"></div>
+        <div class="info-badge">Comfort -> 5 daqiqada keladi</div>
+        <div class="driver-card">
+          <div class="u-icon">👤</div>
+          <div class="d-info">
+            <h4>Shahrillo</h4>
+            <p class="mashina-marka">Chevrolet Malibu</p>
+            <p class="mashina-nomer">01 | A 777 BA</p>
+          </div>
+          <div class="st">⭐ 4.9</div>
+        </div>
+        <div class="action-grid">
+          <div class="btn-black flex-1">📞 Qo'ng'iroq</div>
+          <div class="btn-red flex-1">Bekor qilish</div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
