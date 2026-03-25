@@ -1,102 +1,66 @@
-// const elSpan = document.querySelector(".container-keycode");
-// const elMainCode = document.querySelector(".container-main-code");
-// const elKey = document.querySelector(".container-cards-card-key");
-// const elLocation = document.querySelector(".container-cards-card-location");
-// const elCode = document.querySelector(".container-cards-card-code");
-// const elWhich = document.querySelector(".container-cards-card-which");
-// const elDes = document.querySelector(".container-cards-card-des");
-// window.addEventListener("keyup", (title) => {
-//   elSpan.innerHTML = title.keyCode;
-//   console.log(title);
-// });
-// window.addEventListener("keyup", (title) => {
-//   elMainCode.innerHTML = title.keyCode;
-// });
-// window.addEventListener("keyup", (key) => {
-//   elKey.innerHTML = key.key;
-// });
-// window.addEventListener("keyup", (location) => {
-//   elLocation.innerHTML = location.location;
-// });
-// window.addEventListener("keyup", (code) => {
-//   elCode.innerHTML = code.code;
-// });
-// window.addEventListener("keyup", (which) => {
-//   elWhich.innerHTML = which.which;
-// });
+// Ekranlar orasida o'tish
+function nextScreen(screenId) {
+  document
+    .querySelectorAll(".screen")
+    .forEach((s) => s.classList.remove("active"));
+  document.getElementById(screenId).classList.add("active");
 
-const button = document.querySelector(".btn");
-const input = document.querySelector(".input");
-button.addEventListener("click", () => {
-  console.log("Button clicked!");
-});
+  // Xaritalarni yuklash
+  if (screenId === "main-screen") setTimeout(initMainMap, 100);
+  if (screenId === "status-screen") setTimeout(initStatusMap, 100);
+}
 
-button.addEventListener("dblclick", () => {
-  console.log("Double clicked!");
-});
+// Side Menu
+function toggleMenu() {
+  const menu = document.getElementById("side-menu");
+  const overlay = document.getElementById("overlay");
+  const isOpen = menu.classList.contains("open");
 
-button.addEventListener("mouseover", () => {
-  button.style.backgroundColor = "yellow";
-});
+  menu.classList.toggle("open");
+  overlay.style.display = isOpen ? "none" : "block";
+}
 
-button.addEventListener("mouseout", () => {
-  button.style.backgroundColor = "yellow";
-});
+// Tarif tanlash
+function selectT(el) {
+  document
+    .querySelectorAll(".tariff-box")
+    .forEach((b) => b.classList.remove("active"));
+  el.classList.add("active");
+}
 
-// document.addEventListener('mousemove', (e) => {
-//   console.log(`X: ${e.clientX}, Y: ${e.clientY}`);
-// });
+// Buyurtmani tasdiqlash
+function confirmOrder() {
+  nextScreen("status-screen");
+}
 
-button.addEventListener("mousedown", () => {
-  console.log("Mouse button down!");
-});
+// Yandex Maps - Asosiy
+function initMainMap() {
+  document.getElementById("map-main").innerHTML = "";
+  ymaps.ready(() => {
+    new ymaps.Map("map-main", {
+      center: [41.311, 69.24],
+      zoom: 14,
+      controls: [],
+    });
+  });
+}
 
-document.addEventListener("mouseup", () => {
-  console.log("Mouse button up!");
-});
-
-document.addEventListener("keydown", (e) => {
-  console.log(`Pressed: ${e.key}`);
-});
-
-document.addEventListener("keyup", (e) => {
-  console.log(`Released: ${e.key}`);
-});
-
-document.addEventListener("keypress", (e) => {
-  console.log(`Char pressed: ${e.key}`);
-});
-
-button.addEventListener("focus", () => {
-  console.log("Input focused!");
-});
-
-button.addEventListener("blur", () => {
-  console.log("Input blurred!");
-});
-
-input.addEventListener("input", () => {
-  console.log(input.value);
-});
-
-input.addEventListener("input", () => {
-  console.log(input.value);
-});
-
-window.addEventListener("resize", () => {
-  console.log("Window resized!");
-});
-
-document.addEventListener("contextmenu", (e) => {
-  e.preventDefault();
-  console.log("Right click detected!");
-});
-
-button.addEventListener("drag", () => {
-  console.log("Dragging...");
-});
-
-button.addEventListener("drop", (e) => {
-  e.preventDefault();
-  console.log("Dropped!");
-});
+// Yandex Maps - Status
+function initStatusMap() {
+  document.getElementById("map-status").innerHTML = "";
+  ymaps.ready(() => {
+    const map = new ymaps.Map("map-status", {
+      center: [41.311, 69.24],
+      zoom: 15,
+      controls: [],
+    });
+    const car = new ymaps.Placemark(
+      [41.315, 69.245],
+      {},
+      {
+        preset: "islands#violetAutoIcon",
+      },
+    );
+    map.geoObjects.add(car);
+  });
+}
