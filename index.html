@@ -8,6 +8,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="iphone-frame">
@@ -26,13 +30,17 @@
 
     <div class="iphone-frame">
       <header class="app-header">
-        <div class="glass-chip profile-chip">👤 Dostonbek</div>
-        <div class="glass-chip">🚦 8/10</div>
+        <div class="glass-chip profile-chip">
+          <div class="burger"></div>
+          <div class="burger"></div>
+          <div class="burger"></div>
+        </div>
+        <div class="glass-chip">🚦Tirbandlik: 8/10</div>
       </header>
       <div class="map-view yandex-style">
         <div class="car-wrapper main-pos">
           <div class="car-body">🚕</div>
-          <div class="car-pulse"></div>
+          <div class="car-pulse"><i class="ri-navigation-fill"></i></div>
         </div>
       </div>
       <div class="main-sheet">
@@ -49,17 +57,27 @@
           <div class="t-item active">
             <img
               src="https://cdn-icons-png.flaticon.com/512/744/744465.png"
-            /><span>Start</span><b>22k</b>
+            /><span>Start</span><b>22.000 so'm</b>
           </div>
           <div class="t-item">
             <img
               src="https://cdn-icons-png.flaticon.com/512/3202/3202926.png"
-            /><span>Comfort</span><b>30k</b>
+            /><span>Comfort</span><b>30.000 so'm</b>
           </div>
           <div class="t-item">
             <img
               src="https://cdn-icons-png.flaticon.com/512/2555/2555013.png"
-            /><span>Business</span><b>45k</b>
+            /><span>Business</span><b>45.000 so'm</b>
+          </div>
+          <div class="t-item">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2555/2555013.png"
+            /><span>Yetkazish</span><b>45.000 so'm</b>
+          </div>
+          <div class="t-item">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2555/2555013.png"
+            /><span>Samokat</span><b>45.000 so'm</b>
           </div>
         </div>
         <div class="btn-black">TASDIQLASH</div>
@@ -79,8 +97,11 @@
             <div class="m-link">💳 To'lov usullari</div>
             <div class="m-link">🎁 Bonuslar</div>
             <div class="m-link">⚙️ Sozlamalar</div>
+            <div class="m-link">🧑‍💻 Yordam</div>
+            <div class="m-link">🔐 Parolni almashtirish</div>
             <hr />
             <div class="m-link red">🚪 Chiqish</div>
+            <div class="m-link red">❌ Hisobni o'chirish</div>
           </div>
         </div>
         <div class="blur-sidebar"></div>
@@ -131,6 +152,57 @@
         </div>
         <div class="set-row">Til <span>O'zbekcha</span></div>
         <div class="set-row">Xarita turi <span>Yandex</span></div>
+      </div>
+    </div>
+    <div class="iphone-frame">
+      <div class="page-header">〈 Yordam</div>
+      <div class="content-p">
+        <div class="set-row">
+          Qo'llab-quvvatlash xizmati
+          <span><i class="ri-customer-service-2-fill"></i></span>
+        </div>
+        <div class="set-row">
+          Telegram bot orqali bog'lanish <span>@uklon_help</span>
+        </div>
+        <div class="set-row">Ko'p beriladigan savollar <span>FAQ</span></div>
+        <div class="btn-black" style="margin-top: auto">
+          OPERATOR BILAN BOG'LANISH
+        </div>
+      </div>
+    </div>
+
+    <div class="iphone-frame">
+      <div class="page-header">〈 Parolni almashtirish</div>
+      <div class="content-p">
+        <p style="font-size: 14px; color: #666; margin-bottom: 10px">
+          Yangi parolni kiriting
+        </p>
+        <div class="input-field">Joriy parol</div>
+        <div class="input-field">Yangi parol</div>
+        <div class="input-field">Yangi parolni tasdiqlang</div>
+        <div class="btn-black">SAQLASH</div>
+      </div>
+    </div>
+
+    <div class="iphone-frame">
+      <div class="page-header">〈 Hisobni o'chirish</div>
+      <div
+        class="content-p"
+        style="text-align: center; justify-content: center; height: 70%"
+      >
+        <div style="font-size: 60px; margin-bottom: 20px">⚠️</div>
+        <h2 style="margin-bottom: 15px">Ishonchingiz komilmi?</h2>
+        <p style="color: #666; line-height: 1.5; margin-bottom: 30px">
+          Hisobingizni o'chirib tashlaganingizdan so'ng, barcha bonuslar va
+          safarlar tarixi tiklanmaydigan qilib o'chiriladi.
+        </p>
+        <div class="btn-red">HA, O'CHIRILSIN</div>
+        <div
+          class="btn-outline"
+          style="margin-top: 15px; border-color: #ccc; color: #666"
+        >
+          BEKOR QILISH
+        </div>
       </div>
     </div>
 
