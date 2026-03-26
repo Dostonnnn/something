@@ -13,10 +13,13 @@
       rel="stylesheet"
     />
   </head>
+
   <body>
     <div class="iphone-frame">
       <div class="login-bg">
-        <div class="logo-area"><h1 class="hero-logo">UKLON</h1></div>
+        <div class="logo-area">
+          <h1 class="hero-logo">UKLON</h1>
+        </div>
         <div class="login-sheet">
           <div class="handle"></div>
           <h2 class="centered-title">Xush kelibsiz</h2>
@@ -55,29 +58,24 @@
         </div>
         <div class="tariff-scroll">
           <div class="t-item active">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/744/744465.png"
-            /><span>Start</span><b>22.000 so'm</b>
+            <img src="https://img.icons8.com/fluency/96/taxi.png" />
+            <span>Start</span><b>22.000 so'm</b>
           </div>
           <div class="t-item">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/3202/3202926.png"
-            /><span>Comfort</span><b>30.000 so'm</b>
+            <img src="https://img.icons8.com/fluency/96/car.png" />
+            <span>Comfort</span><b>30.000 so'm</b>
           </div>
           <div class="t-item">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2555/2555013.png"
-            /><span>Business</span><b>45.000 so'm</b>
+            <img src="https://img.icons8.com/fluency/96/suv.png" />
+            <span>Business</span><b>45.000 so'm</b>
           </div>
           <div class="t-item">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2555/2555013.png"
-            /><span>Yetkazish</span><b>45.000 so'm</b>
+            <img src="https://img.icons8.com/fluency/96/box.png" />
+            <span>Yetkazish</span><b>20.000 so'm</b>
           </div>
           <div class="t-item">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2555/2555013.png"
-            /><span>Samokat</span><b>45.000 so'm</b>
+            <img src="https://img.icons8.com/fluency/96/kick-scooter.png" />
+            <span>Samokat</span><b>5.000 so'm</b>
           </div>
         </div>
         <div class="btn-black">TASDIQLASH</div>
@@ -88,7 +86,9 @@
       <div class="menu-wrapper">
         <div class="side-menu">
           <div class="menu-head">
-            <div class="u-icon">👤</div>
+            <a href="#profile-page" class="profile-link">
+              <div class="u-icon">👤</div>
+            </a>
             <h3>Dostonbek</h3>
             <p>Oltin mijoz • 4.98 ⭐</p>
           </div>
@@ -148,7 +148,10 @@
       <div class="page-header">〈 Sozlamalar</div>
       <div class="content-p">
         <div class="set-row">
-          Tungi rejim <span><div class="dumaloq"></div></span>
+          Tungi rejim
+          <span>
+            <div class="dumaloq"></div>
+          </span>
         </div>
         <div class="set-row">Til <span>O'zbekcha</span></div>
         <div class="set-row">Xarita turi <span>Yandex</span></div>
@@ -208,11 +211,16 @@
 
     <div class="iphone-frame">
       <div class="map-view yandex-style">
-        <div class="car-wrapper status-pos"><div class="car-body">🚕</div></div>
+        <div class="car-wrapper status-pos">
+          <div class="car-body">🚕</div>
+        </div>
       </div>
       <div class="status-sheet">
         <div class="handle"></div>
-        <div class="info-badge">Comfort -> 5 daqiqada keladi</div>
+        <div class="info-badge info-badge-flex">
+          <span>Comfort ➔ 5 daq.</span>
+          <span class="price-text">30,000 so'm</span>
+        </div>
         <div class="driver-card">
           <div class="u-icon">👤</div>
           <div class="d-info">
@@ -226,6 +234,45 @@
           <div class="btn-black flex-1">📞 Qo'ng'iroq</div>
           <div class="btn-red flex-1">Bekor qilish</div>
         </div>
+      </div>
+    </div>
+    <div class="iphone-frame" id="profile-page">
+      <div class="page-header profile-header">
+        <a href="#" class="back-link">〈</a>
+        Mening profilim
+      </div>
+      <div class="content-p profile-content">
+        <div class="profile-avatar">👤</div>
+        <h2 class="profile-name">Dostonbek</h2>
+        <p class="profile-phone">+998 90 123 45 67</p>
+
+        <div class="profile-stats">
+          <div class="stat-box">
+            <h4>4.98 ⭐</h4>
+            <p>Reyting</p>
+          </div>
+          <div class="stat-box">
+            <h4>142</h4>
+            <p>Safar</p>
+          </div>
+          <div class="stat-box">
+            <h4>Oltin</h4>
+            <p>Status</p>
+          </div>
+        </div>
+
+        <div class="profile-details">
+          <div class="set-row">
+            Telefon raqami
+            <span class="edit-phone">+998 90 123 45 67</span>
+          </div>
+          <div class="set-row">Ism <span>Dostonbek</span></div>
+          <div class="set-row">Familiya <span>Qo'shilmagan</span></div>
+          <div class="set-row">Tug'ilgan sana <span>24.10.1998</span></div>
+          <div class="set-row">Pochta <span>dostonbek@mail.uz</span></div>
+        </div>
+
+        <div class="btn-black btn-profile-save">MA'LUMOTLARNI TAHRIRLASH</div>
       </div>
     </div>
   </body>
