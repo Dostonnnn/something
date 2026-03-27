@@ -12,6 +12,9 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js" defer></script>
   </head>
 
   <body>
@@ -23,8 +26,12 @@
         <div class="login-sheet">
           <div class="handle"></div>
           <h2 class="centered-title">Xush kelibsiz</h2>
-          <div class="input-field">+998 90 123 45 67</div>
-          <div class="input-field">Parol</div>
+          <input
+            type="text"
+            class="input-field"
+            placeholder="+998 90 123 45 67"
+          />
+          <input type="password" class="input-field" placeholder="Parol" />
           <div class="btn-black">KIRISH</div>
           <div class="btn-outline">RO'YXATDAN O'TISH</div>
         </div>
@@ -38,22 +45,27 @@
           <div class="burger"></div>
           <div class="burger"></div>
         </div>
-        <div class="glass-chip">🚦Tirbandlik: 8/10</div>
+        <div class="glass-chip traffic-chip">🚦Tirbandlik: <span>8/10</span></div>
       </header>
-      <div class="map-view yandex-style">
-        <div class="car-wrapper main-pos">
-          <div class="car-body">🚕</div>
-          <div class="car-pulse"><i class="ri-navigation-fill"></i></div>
+      <div class="map-view" id="map-main" style="z-index: 1;">
+        <!-- The navigator button -->
+        <div class="car-pulse" style="z-index:1000; bottom:25px; right:15px; position:absolute; pointer-events:auto; display:flex; justify-content:center; align-items:center; width:44px; height:44px; background:#ffd600; border-radius:50%; box-shadow:0 4px 10px rgba(0,0,0,0.2); cursor:pointer;">
+          <i class="ri-navigation-fill" style="font-size:24px; color:#000;"></i>
         </div>
       </div>
       <div class="main-sheet">
         <div class="handle"></div>
-        <div class="address-box">
+        <div class="address-box" style="position:relative;">
           <div class="addr-row">
-            📍 <input type="text" value="Nurafshon ko'chasi, 70A" />
+            📍 <input type="text" id="from-address" value="Nurafshon ko'chasi, 70A" />
           </div>
           <div class="addr-row no-b">
-            🏁 <input type="text" value="Qalandar ko'chasi, 24" />
+            🏁 <input type="text" id="to-address" value="Qalandar ko'chasi, 24" />
+          </div>
+          <div id="autocomplete-suggestions" style="display:none; position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ccc; border-radius:10px; z-index:50; overflow:hidden;">
+            <div class="sugg-item" style="padding:10px; border-bottom:1px solid #eee; cursor:pointer;">Chilonzor Metro Oqtepa</div>
+            <div class="sugg-item" style="padding:10px; border-bottom:1px solid #eee; cursor:pointer;">Amir Temur maydoni</div>
+            <div class="sugg-item" style="padding:10px; cursor:pointer;">Qoraqamish 2/4</div>
           </div>
         </div>
         <div class="tariff-scroll">
@@ -127,7 +139,7 @@
     <div class="iphone-frame">
       <div class="page-header">〈 To'lov usullari</div>
       <div class="content-p">
-        <div class="pay-card active">💳 8600 **** 1234 <span>Humo</span></div>
+        <div class="pay-card active" style="position:relative;">💳 8600 **** 1234 <span>Humo</span> <span class="remove-card" style="position:absolute; right:15px; cursor:pointer;" title="O'chirish">❌</span></div>
         <div class="pay-card">💵 Naqd pul <span>Asosiy</span></div>
         <div class="btn-outline">+ Karta qo'shish</div>
       </div>
@@ -153,8 +165,8 @@
             <div class="dumaloq"></div>
           </span>
         </div>
-        <div class="set-row">Til <span>O'zbekcha</span></div>
-        <div class="set-row">Xarita turi <span>Yandex</span></div>
+        <div class="set-row">Til <span id="lang-label">O'zbekcha</span></div>
+        <div class="set-row map-type-toggle" style="cursor:pointer;">Xarita turi <span id="map-type-label">Yandex</span></div>
       </div>
     </div>
     <div class="iphone-frame">
@@ -162,12 +174,12 @@
       <div class="content-p">
         <div class="set-row">
           Qo'llab-quvvatlash xizmati
-          <span><i class="ri-customer-service-2-fill"></i></span>
+          <span><a href="tel:+998940151752" style="text-decoration:none; color:inherit;">+998 94 015 17 52</a> <i class="ri-customer-service-2-fill"></i></span>
         </div>
         <div class="set-row">
-          Telegram bot orqali bog'lanish <span>@uklon_help</span>
+          Telegram bot orqali bog'lanish <span><a href="https://t.me/uklon_help" target="_blank" style="text-decoration:none; color:#007aff; font-weight:bold;">@uklon_help</a></span>
         </div>
-        <div class="set-row">Ko'p beriladigan savollar <span>FAQ</span></div>
+        <div class="set-row">Ko'p beriladigan savollar <span id="faq-link" style="cursor:pointer; color:#007aff;">FAQ</span></div>
         <div class="btn-black" style="margin-top: auto">
           OPERATOR BILAN BOG'LANISH
         </div>
@@ -180,9 +192,13 @@
         <p style="font-size: 14px; color: #666; margin-bottom: 10px">
           Yangi parolni kiriting
         </p>
-        <div class="input-field">Joriy parol</div>
-        <div class="input-field">Yangi parol</div>
-        <div class="input-field">Yangi parolni tasdiqlang</div>
+        <input type="password" class="input-field" placeholder="Joriy parol" />
+        <input type="password" class="input-field" placeholder="Yangi parol" />
+        <input
+          type="password"
+          class="input-field"
+          placeholder="Yangi parolni tasdiqlang"
+        />
         <div class="btn-black">SAQLASH</div>
       </div>
     </div>
@@ -210,10 +226,7 @@
     </div>
 
     <div class="iphone-frame">
-      <div class="map-view yandex-style">
-        <div class="car-wrapper status-pos">
-          <div class="car-body">🚕</div>
-        </div>
+      <div class="map-view" id="map-status" style="z-index: 1;">
       </div>
       <div class="status-sheet">
         <div class="handle"></div>
@@ -312,6 +325,87 @@
           <div class="set-row">Avtomobil <span>Chevrolet Malibu</span></div>
           <div class="set-row">Davlat raqami <span>01 | A 777 BA</span></div>
         </div>
+      </div>
+    </div>
+
+    <div class="iphone-frame" id="register-page">
+      <div class="page-header">
+        <a
+          href="#"
+          class="back-link"
+          style="
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            margin-right: 10px;
+          "
+          >〈</a
+        >
+        Ro'yxatdan o'tish
+      </div>
+      <div class="content-p" style="padding-top: 30px">
+        <input type="text" class="input-field" placeholder="Ismingiz" />
+        <input type="text" class="input-field" placeholder="Familiyangiz" />
+        <input
+          type="text"
+          class="input-field"
+          placeholder="+998 90 123 45 67"
+        />
+        <input type="password" class="input-field" placeholder="Parol" />
+        <div class="btn-black btn-register-submit">TASDIQLASH</div>
+      </div>
+    </div>
+
+    <div class="iphone-frame" id="add-card-page">
+      <div class="page-header">
+        <a
+          href="#"
+          class="back-link"
+          style="
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            margin-right: 10px;
+          "
+          >〈</a
+        >
+        Karta qo'shish
+      </div>
+      <div class="content-p" style="padding-top: 30px">
+        <input
+          type="text"
+          class="input-field"
+          placeholder="Karta raqami (0000 0000 0000 0000)"
+        />
+        <input
+          type="text"
+          class="input-field"
+          placeholder="Amal qilish muddati (OO/YY)"
+        />
+        <div class="btn-black btn-add-card-submit">SAQLASH</div>
+      </div>
+    </div>
+    <div class="iphone-frame" id="edit-profile-page">
+      <div class="page-header">
+        <a href="#" class="back-link" style="text-decoration:none;color:#000;font-weight:bold;margin-right:10px;">〈</a>
+        Tahrirlash
+      </div>
+      <div class="content-p" style="padding-top: 30px">
+        <input type="text" class="input-field" placeholder="Ismingiz (masalan, Dostonbek)" id="e-name" />
+        <input type="text" class="input-field" placeholder="Familiyangiz" id="e-surename" />
+        <input type="text" class="input-field" placeholder="+998 90 123 45 67" id="e-phone" />
+        <div class="btn-black btn-save-profile-data">SAQLASH</div>
+      </div>
+    </div>
+    
+    <div class="iphone-frame" id="faq-page">
+      <div class="page-header">
+        <a href="#" class="back-link" style="text-decoration:none;color:#000;font-weight:bold;margin-right:10px;">〈</a> FAQ
+      </div>
+      <div class="content-p" style="padding-top: 30px; overflow-y:auto; flex:1;">
+        <div class="hist-card faq-item" style="margin-bottom:10px;"><b>1. Karta qanday qo'shiladi?</b><p style="font-size:14px; margin-top:5px; color:#555;">To'lov usullari bo'limidan qo'shishingiz mumkin.</p></div>
+        <div class="hist-card faq-item" style="margin-bottom:10px;"><b>2. Kutish vaqti pullikmi?</b><p style="font-size:14px; margin-top:5px; color:#555;">Belgilangan bepul kutish vaqtidan so'ng har bir daqiqa uchun tarif bo'yicha hisoblanadi.</p></div>
+        <div class="hist-card faq-item" style="margin-bottom:10px;"><b>3. Bonuslar nima uchun kerak?</b><p style="font-size:14px; margin-top:5px; color:#555;">Ularni navbatdagi safarlaringizda chegirma sifatida ishlatishingiz mumkin.</p></div>
       </div>
     </div>
   </body>

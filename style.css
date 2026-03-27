@@ -51,6 +51,7 @@ body {
 .car-wrapper {
   position: absolute;
   z-index: 5;
+  transform: translate(-50%, -50%);
 }
 .main-pos {
   top: 35%;
@@ -218,6 +219,15 @@ body {
   padding: 18px;
   border-radius: 18px;
   margin-bottom: 15px;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  display: block;
+  color: #333;
+}
+.input-field::placeholder {
+  color: #999;
 }
 .address-box {
   border: 1.5px solid var(--border);
@@ -476,4 +486,102 @@ body {
   width: 100%;
   margin-top: 5px !important; /* Tugma balandroq chiqishi uchun */
   margin-bottom: 15px !important;
+}
+
+/* DARK MODE STYLES */
+body.dark-mode .iphone-frame {
+  background: #1c1c1e;
+  color: #fff;
+}
+body.dark-mode .page-header {
+  background: #333;
+  border-bottom-color: #444;
+  color: #fff;
+}
+body.dark-mode .page-header .back-link {
+  color: #fff !important;
+}
+body.dark-mode .login-sheet,
+body.dark-mode .main-sheet,
+body.dark-mode .status-sheet,
+body.dark-mode .side-menu {
+  background: #1c1c1e;
+}
+body.dark-mode .input-field,
+body.dark-mode .hist-card,
+body.dark-mode .pay-card,
+body.dark-mode .set-row,
+body.dark-mode .t-item,
+body.dark-mode .stat-box {
+  background: #2c2c2e;
+  color: #fff;
+}
+body.dark-mode .addr-row {
+  border-bottom-color: #444;
+}
+body.dark-mode .addr-row input {
+  background: transparent;
+  color: #fff;
+}
+body.dark-mode .m-link {
+  color: #ccc;
+}
+body.dark-mode .m-link.active {
+  color: #fff;
+}
+body.dark-mode .address-box {
+  border-color: #444;
+}
+body.dark-mode .t-item.active,
+body.dark-mode .pay-card.active {
+  background: #1c1c1e;
+  border-color: #ffd600;
+}
+body.dark-mode .profile-details .set-row span,
+body.dark-mode .set-row span {
+  color: #ddd;
+}
+body.dark-mode .btn-outline {
+  border-color: #ffd600;
+  color: #ffd600;
+}
+body.dark-mode .dumaloq {
+  background-color: #000;
+}
+body.dark-mode #autocomplete-suggestions {
+  background: #2c2c2e;
+  border-color: #444;
+}
+body.dark-mode .sugg-item {
+  border-bottom-color: #444;
+  color: #fff;
+}
+body.dark-mode .sugg-item:hover {
+  background: #3a3a3c;
+}
+
+.sugg-item:hover {
+  background: #f2f2f7;
+}
+
+/* Enhancements */
+.traffic-chip {
+  background: linear-gradient(135deg, #ff4c4c, #ff9800);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 76, 76, 0.4);
+}
+/* Tungi rejimda profile va malumotlar elementlariga border radius va padding qo'shilishi */
+body.dark-mode .set-row,
+body.dark-mode .hist-card {
+  background: #1c1c1e;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: none;
+}
+body.dark-mode .input-field {
+  background: #1c1c1e;
+  border-radius: 12px;
+  color: #fff;
 }
